@@ -1,0 +1,19 @@
+{
+  "name": "live",
+  "version": "1.0.0",
+  "description": "pure javascript webrtc wrapper",
+  "main": "Live.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusukem99/Live.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yusukem99/Live/issues"
+  },
+  "homepage": "https://github.com/yusukem99/Live#readme"
+}
