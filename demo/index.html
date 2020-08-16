@@ -1,6 +1,30 @@
 <!DOCTYPE html>
     <meta http-equiv="content-type" charset="utf-8">
-    <script src="js/index.js" type="module"></script>
+    <head>
+
+        <style>
+            textarea{
+                width:500px;
+                height:300px;
+                font-size: 20px   
+            }
+        </style>
+        <script src="js/index.js" type="module"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    </head>
     <body>
+        <button id="debug">debug</button>
+        <button id="makeoffer">Make Offer</button>
+        <div>
+            <div>
+                <input id="id">
+            </div>
+            <div>
+                <textarea id="setdata"></textarea>
+            </div>
+            <button id="setoffer">Set Offer</button>
+            <button id="setanswer">Set Answer</button>
+        </div>
     </body>
 </html>
