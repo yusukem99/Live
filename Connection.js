@@ -50,6 +50,7 @@ class Connection {
                 //console.log(evt.candidate);
                 this.callback_onicecandidate( this.id, evt.candidate );
             } else {
+                this.callback_onicecandidate( this.id, null );
                 console.log('empty ice event');
             }
         };
