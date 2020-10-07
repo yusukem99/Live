@@ -79,7 +79,12 @@ class Live{
     }
     sendMessage( channel, message ){
         for(let i in this.peerConnections.connections ){
-            this.peerConnections.connections[i].channels[channel].send( message );
+            const channels = this.peerConnections.connections[i].channels;
+            if( channels && channels[channel] && channels[channel].readyState == "open" ){
+                channels[channel].send( message );
+            }else{
+                console.log( `readystate is ${channels[channel].readyState}`)
+            }
         }
     }
     setLocalStream( stream ){
