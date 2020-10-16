@@ -77,6 +77,17 @@ class Live{
         let message = { type: sessionDescription.type, sdp: sessionDescription.sdp };
         this.emitTo(id, message);
     }
+    sendMessageTo( id, channel, message ){
+        const connection = this.peerConnections.getConnection(id);
+
+        if( connection && connection.channels[channel] ){
+            if( connection.channels[channel].readyState == "open" ){
+                connection.channels[channel].send( message );
+            }else{
+                console.log( `readystate is ${connection.channels[channel].readyState}`)
+            }
+        }
+    }  
     sendMessage( channel, message ){
         for(let i in this.peerConnections.connections ){
             const channels = this.peerConnections.connections[i].channels;
