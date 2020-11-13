@@ -56,8 +56,8 @@ class Connection {
         };
         this.peer.oniceconnectionstatechange = () => {
             console.log('== ice connection status=' + this.peer.iceConnectionState);
-            if (this.peer.iceConnectionState === 'disconnected') {
-                this.onicedisconnect( this.id);
+            if (this.peer.iceConnectionState) {
+                this.onicedisconnect( this.id, this.peer.iceConnectionState);
             }
         };
         this.peer.onremovestream = (event) => {

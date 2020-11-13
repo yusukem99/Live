@@ -28,10 +28,12 @@ class ConList {
         let onicecandidate = ( id, candidate ) => {
             this.sendIceCandidate( id, candidate);
         };
-        let onicedisconnect = ( id ) => {
-            this.stopConnection( id );
+        let oniceconnectionstatechange = ( id, connectionstate ) => {
+            //親のコールバック
+            this.callback_icedisconnect( id, connectionstate )
+            if( connectionstate == 'disconnected') this.stopConnection( id );
         };
-        let connection = new Connection( id, account, onicecandidate, onicedisconnect, this.onAddStream, this.channelOption);
+        let connection = new Connection( id, account, onicecandidate, oniceconnectionstatechange, this.onAddStream, this.channelOption);
         connection.init( localStream );
         this.connections.push(connection);
         return connection;
@@ -53,8 +55,6 @@ class ConList {
     stopConnection(id) {
         this.closeConnection(id);
         this.deleteConnection(id);
-        //親のコールバック
-        this.callback_icedisconnect( id )
     }
     stopAllConnection() {
         let count = this.connections.length;
