@@ -94,7 +94,7 @@ class Live{
             if( channels && channels[channel] && channels[channel].readyState == "open" ){
                 channels[channel].send( message );
             }else{
-                console.log( `readystate is ${channels[channel].readyState}`)
+                console.log( `readystate is not opened`)
             }
         }
     }
