@@ -1,13 +1,13 @@
 import ConList from './ConList.js';
 
 class Live{
-    constructor( emitTo, onicedisconnect, onAddStream, channelOption ){
+    constructor( emitTo, oniceconnectionstatechange, onAddStream, channelOption ){
         this.emitTo = emitTo;
-        this.onicedisconnect = onicedisconnect;
+        this.oniceconnectionstatechange = oniceconnectionstatechange;
         this.onAddStream = onAddStream;
         this.channelOption = channelOption;
         this.localStream = new MediaStream();
-        this.peerConnections = new ConList( this.emitTo, this.onicedisconnect, this.onAddStream, this.channelOption );
+        this.peerConnections = new ConList( this.emitTo, this.oniceconnectionstatechange, this.onAddStream, this.channelOption );
     }
     playVideo(element) {
         if ('srcObject' in element) {

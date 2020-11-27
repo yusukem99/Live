@@ -1,9 +1,9 @@
 import Connection from './Connection.js';
 class ConList {
-    constructor( emitTo, callback_icedisconnect, onAddStream, channelOption, callback_onmessage ){
+    constructor( emitTo, callback_iceconnectionstatechange, onAddStream, channelOption, callback_onmessage ){
         this.connections = [];
         this.emitTo = emitTo;
-        this.callback_icedisconnect = callback_icedisconnect;
+        this.callback_iceconnectionstatechange = callback_iceconnectionstatechange;
         this.onAddStream = onAddStream;
         this.channelOption = channelOption;
         this.callback_onmessage = callback_onmessage;
@@ -30,7 +30,7 @@ class ConList {
         };
         let oniceconnectionstatechange = ( id, connectionstate ) => {
             //親のコールバック
-            this.callback_icedisconnect( id, connectionstate )
+            this.callback_iceconnectionstatechange( id, connectionstate )
             if( connectionstate == 'disconnected') this.stopConnection( id );
         };
         let connection = new Connection( id, account, onicecandidate, oniceconnectionstatechange, this.onAddStream, this.channelOption);

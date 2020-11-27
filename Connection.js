@@ -1,5 +1,5 @@
 class Connection {
-    constructor( id, account, callback_onicecandidate, onicedisconnect, callback_onaddStream, channelOption ){
+    constructor( id, account, callback_onicecandidate, oniceconnectionstatechange, callback_onaddStream, channelOption ){
         this.id = id;
         this.account = account;
         this.stream;
@@ -16,7 +16,7 @@ class Connection {
         this.callback_onicecandidate = callback_onicecandidate;
 
         this.callback_channel_onmessage = this.channelOption.callback_channel.onmessage;
-        this.onicedisconnect = onicedisconnect;
+        this.oniceconnectionstatechange = oniceconnectionstatechange;
     }
     init( localStream ){
         //console.log('---Connection init id: ' + this.id);
@@ -47,17 +47,14 @@ class Connection {
         };
         this.peer.onicecandidate = (evt) => {
             if (evt.candidate) {
-                //console.log(evt.candidate);
                 this.callback_onicecandidate( this.id, evt.candidate );
             } else {
                 this.callback_onicecandidate( this.id, null );
-                console.log('empty ice event');
             }
-        };
+        };      
         this.peer.oniceconnectionstatechange = () => {
-            console.log('== ice connection status=' + this.peer.iceConnectionState);
             if (this.peer.iceConnectionState) {
-                this.onicedisconnect( this.id, this.peer.iceConnectionState);
+                this.oniceconnectionstatechange( this.id, this.peer.iceConnectionState);
             }
         };
         this.peer.onremovestream = (event) => {
